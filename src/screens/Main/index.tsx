@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { FlatList } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useForm } from 'react-hook-form';
@@ -16,6 +17,7 @@ const Main: React.FC = () => {
 
 	const [users, setUsers] = useState<IUser[]>();
 	const {register, handleSubmit, setValue} = useForm();
+	const navigation = useNavigation();
 
 	const handleSubmitSearch = async(data: any) => {
 		try {
@@ -43,13 +45,14 @@ const Main: React.FC = () => {
 
 			<FlatList
 				style={{marginTop: 10}}
-				keyExtractor={(item) => item.id}
+				keyExtractor={(item) => String(item.id)}
 				data={users}
 				renderItem={({item}) =>
 					<User
 						id={item.id}
 						login={item.login}
 						avatar_url={item.avatar_url}
+						navigate={() => navigation.navigate('Profile', {login: item.login})}
 					/>}
 			/>
 		</S.Container>

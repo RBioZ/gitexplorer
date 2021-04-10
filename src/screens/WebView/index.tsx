@@ -1,10 +1,23 @@
 import React from 'react';
-import { View } from 'react-native';
 
-// import { Container } from './styles';
+import { WebView } from 'react-native-webview';
+import { RouteProp, useRoute } from '@react-navigation/native';
 
-const WebView: React.FC = () => {
-	return <View />;
-}
+const Web: React.FC = () => {
+  const route = useRoute<
+    RouteProp<
+      {
+        params: {
+          url: string;
+        };
+      },
+      'params'
+    >
+  >();
 
-export default WebView;
+  return (
+    <WebView source={{ uri: route.params.url }} style={{ marginTop: 20 }} />
+  );
+};
+
+export default Web;

@@ -3,9 +3,10 @@ import { RectButton } from 'react-native-gesture-handler'
 import Constants from 'expo-constants';
 
 export const Container = styled(RectButton)`
-	height: 100px;
+	min-height: 100px;
 	margin-bottom: 10px;
 	padding: 0 20px;
+	background-color: #fff;
 `;
 
 export const Title = styled.Text`

@@ -3,8 +3,7 @@ import {StyleSheet} from 'react-native';
 import Constants from 'expo-constants';
 
 export const Container = styled.View`
-	margin-top: 10px;
-	background: #f0f0f5;
+	background: #fff;
 `;
 
 export const DataContainer = styled.View`
@@ -33,6 +32,7 @@ export const DataValue = styled.Text`
 export const Avatar = styled.Image`
 	height: 70px;
 	width: 70px;
+	background-color: #ccc;
 `;
 
 export const Login = styled.Text`
@@ -57,19 +57,18 @@ export const NameContainer = styled.View`
 
 export const Back = styled.TouchableOpacity`
 	position: absolute;
-	left: 0px;
+	left: 15px;
 	height: 50px;
 	width: 50px;
 	justify-content: center;
 `;
 
 export const Header = styled.View`
-	margin: 0 20px;
 	margin-top: ${Constants.statusBarHeight}px;
 	height: 50px;
-
 	align-items: center;
 	justify-content: center;
+	background-color: #fff;
 `;
 
 export const Title = styled.Text`
