@@ -2,14 +2,14 @@ import styled from 'styled-components/native';
 import Constants from 'expo-constants';
 
 export const Container = styled.View`
-	margin-top: ${Constants.statusBarHeight}px;
+	margin: 0 20px;
+	margin-top: ${ 20 + Constants.statusBarHeight}px;
 	background: #f0f0f5;
 `;
 
 export const Header = styled.View`
 	height: 50px;
 	flex-direction: row;
-	margin: 0 20px;
 `;
 
 export const Input = styled.TextInput`
@@ -18,6 +18,8 @@ export const Input = styled.TextInput`
 	margin-right: 10px;
 	border-radius: 5px;
 	background-color: #fff;
+	font-size: 18px;
+	padding-left: 15px;
 `;
 
 export const Button = styled.TouchableOpacity`

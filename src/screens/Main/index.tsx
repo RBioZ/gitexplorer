@@ -1,17 +1,59 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { FlatList } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-
+import { useForm } from 'react-hook-form';
+import api from '../../services/api'
+import User from '../../components/User'
 import * as S from './styles';
 
-const Main: React.FC = () => (
-	<S.Container>
-		<S.Header>
-			<S.Input />
-			<S.Button>
-				<Feather name="search" size={30} color="#51398e" />
-			</S.Button>
-		</S.Header>
-	</S.Container>
-)
+interface IUser {
+	id: string;
+	login: string;
+	avatar_url: string;
+}
+
+const Main: React.FC = () => {
+
+	const [users, setUsers] = useState<IUser[]>();
+	const {register, handleSubmit, setValue} = useForm();
+
+	const handleSubmitSearch = async(data: any) => {
+		try {
+			const response = await api.get(`/search/users?q=${data.query}`)
+			setUsers(response.data.items)
+			// console.log(response.data)
+		}
+		catch(error){
+			console.log(error)
+		}
+	}
+
+	useEffect(() => {
+    register('query');
+  }, [register]);
+
+	return (
+		<S.Container>
+			<S.Header>
+				<S.Input onChangeText={text => {setValue('query', text)}} placeholder={'Procure um usuário, ex. RBioZ'} />
+				<S.Button onPress={handleSubmit(handleSubmitSearch)}>
+					<Feather name="search" size={30} color="#51398e" />
+				</S.Button>
+			</S.Header>
+
+			<FlatList
+				style={{marginTop: 10}}
+				keyExtractor={(item) => item.id}
+				data={users}
+				renderItem={({item}) =>
+					<User
+						id={item.id}
+						login={item.login}
+						avatar_url={item.avatar_url}
+					/>}
+			/>
+		</S.Container>
+	)
+}
 
 export default Main;
