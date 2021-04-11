@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import MainScreen from '../screens/Main';
 import ProfileScreen from '../screens/Profile';
 import WebViewScreen from '../screens/WebView';
+import RecentsScreen from '../screens/Recents';
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,7 @@ const AppRoutes: React.FC = () => (
 			<Stack.Screen name="Home" component={MainScreen} />
 			<Stack.Screen name="Profile" component={ProfileScreen} />
 			<Stack.Screen name="WebView" component={WebViewScreen} />
+			<Stack.Screen name="Recents" component={RecentsScreen} />
 		</Stack.Navigator>
 	</NavigationContainer>
 );

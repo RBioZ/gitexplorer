@@ -31,3 +31,15 @@ export const Button = styled.TouchableOpacity`
 	justify-content: center;
 `;
 
+export const RecentsLink = styled.TouchableOpacity`
+	margin: 5px 0;
+	flex-direction: row;
+`;
+
+export const Recent = styled.Text`
+	text-decoration: underline;
+	font-weight: bold;
+	color: #51398e;
+`;
+
+

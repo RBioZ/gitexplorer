@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { FlatList } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import { Feather, MaterialIcons } from '@expo/vector-icons';
 import { useForm } from 'react-hook-form';
 import api from '../../services/api'
 import User from '../../components/User'
@@ -41,10 +41,14 @@ const Main: React.FC = () => {
 				<S.Button onPress={handleSubmit(handleSubmitSearch)}>
 					<Feather name="search" size={30} color="#51398e" />
 				</S.Button>
-			</S.Header>
 
+			</S.Header>
+			<S.RecentsLink onPress={() => navigation.navigate('Recents')}>
+				<S.Recent>Recentes</S.Recent>
+				<MaterialIcons name="keyboard-arrow-right" size={24} color="#51398e" />
+			</S.RecentsLink>
 			<FlatList
-				style={{marginTop: 10}}
+				style={{marginTop: 0, marginBottom: 100}}
 				keyExtractor={(item) => String(item.id)}
 				data={users}
 				renderItem={({item}) =>
