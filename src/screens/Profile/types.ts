@@ -23,4 +23,5 @@ export interface IRepository {
 	language: string,
 	forks_count: number,
 	forks: number,
+	html_url: string;
 }
