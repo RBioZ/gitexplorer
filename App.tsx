@@ -1,8 +1,13 @@
 import React from 'react';
 import Routes from './src/routes'
+import {PaymentProvider} from './src/hooks/recents';
 
 export default function App() {
-  return <Routes />
+  return (
+		<PaymentProvider>
+			<Routes />
+		</PaymentProvider>
+	)
 }
 
 //#51398e Lilás

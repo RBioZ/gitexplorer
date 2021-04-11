@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import { FlatList } from 'react-native';
 import { Feather, MaterialIcons } from '@expo/vector-icons';
 import { useForm } from 'react-hook-form';
+import { useRecents } from '../../hooks/recents';
 import api from '../../services/api'
 import User from '../../components/User'
 import * as S from './styles';
@@ -17,6 +18,7 @@ const Main: React.FC = () => {
 
 	const [users, setUsers] = useState<IUser[]>();
 	const {register, handleSubmit, setValue} = useForm();
+	const { addUser } = useRecents();
 	const navigation = useNavigation();
 
 	const handleSubmitSearch = async(data: any) => {
@@ -56,7 +58,10 @@ const Main: React.FC = () => {
 						id={item.id}
 						login={item.login}
 						avatar_url={item.avatar_url}
-						navigate={() => navigation.navigate('Profile', {login: item.login})}
+						navigate={() => {
+							navigation.navigate('Profile', {login: item.login});
+							addUser(item);
+						}}
 					/>}
 			/>
 		</S.Container>

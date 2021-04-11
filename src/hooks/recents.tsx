@@ -1,4 +1,5 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
+import React, { createContext, useCallback, useContext, useState, useEffect } from 'react';
+import AsyncStorage from '@react-native-community/async-storage';
 
 interface IUser {
 	id: string;
@@ -17,9 +18,26 @@ export const PaymentProvider: React.FC = ({ children }) => {
 
 	const [users, setUsers] = useState<IUser[]>([])
 
-	const addUser = (user: IUser) => {
-		setUsers(prev => [...prev, user])
-	}
+	const addUser = useCallback(async(user: IUser) => {
+		if(users.length >= 10){
+			let tmp = users;
+			tmp.pop();
+			setUsers(tmp);
+		}
+		setUsers(prev => [user,...prev]);
+		await AsyncStorage.setItem('@gitsearch/recents', JSON.stringify([user,...users]));
+	}, [users, setUsers])
+
+	useEffect(() => {
+
+		const loadRecents = async() => {
+			const recents = await AsyncStorage.getItem('@gitsearch/recents');
+			setUsers(JSON.parse(String(recents)));
+		}
+
+		loadRecents();
+
+	} ,[])
 
   return (
 		<RecentsContext.Provider value={{users, addUser}}>
