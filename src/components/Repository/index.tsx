@@ -1,8 +1,9 @@
 import React from 'react';
 import { FontAwesome } from '@expo/vector-icons';
+import { RectButtonProperties } from 'react-native-gesture-handler'
 import * as S from './styles';
 
-interface IRepository {
+interface IRepository extends RectButtonProperties {
 	title: string;
 	description: string;
 	language: string;
@@ -10,9 +11,9 @@ interface IRepository {
 	stars_count: number;
 }
 
-const Repository: React.FC<IRepository> = ({title, description, stars_count, fork_count, language}) => {
+const Repository: React.FC<IRepository> = ({title, description, stars_count, fork_count, language, ...rest}) => {
 	return (
-		<S.Container>
+		<S.Container {...rest}>
 			<S.Title>{title}</S.Title>
 			<S.Description>{description}</S.Description>
 			<S.BottomContainer>

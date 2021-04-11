@@ -55,6 +55,7 @@ const Profile: React.FC = () => {
 			keyExtractor={(item) => String(item.id)}
 			data={repositories}
 			renderItem={({item}) => <Repository
+				onPress={() => navigation.navigate('WebView', {url: 'https://www.google.com'})}
 				title={item.name}
 				description={item.description}
 				fork_count={item.forks_count}
