@@ -14,13 +14,13 @@ const Recents: React.FC = () => {
 		<>
 		<S.Header>
 			<S.Back onPress={() => navigation.goBack()}>
-				<Ionicons name="arrow-back" size={30} color="black" />
+				<Ionicons name="arrow-back" size={30} color="white" />
 			</S.Back>
-			<S.Title>Recents</S.Title>
+			<S.Title>Histórico</S.Title>
 		</S.Header>
 		<FlatList
-				style={{marginTop: 0, marginBottom: 100}}
-				keyExtractor={(item) => String(item.id)}
+				style={{marginTop: 10, paddingLeft: 20, paddingRight: 20}}
+				keyExtractor={(item, index) => String(index)}
 				data={users}
 				renderItem={({item}) =>
 					<User

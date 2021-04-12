@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { FlatList, View } from 'react-native';
+import { FlatList, Modal, ActivityIndicator } from 'react-native';
 import { Feather, MaterialIcons } from '@expo/vector-icons';
 import { useForm } from 'react-hook-form';
 import { useRecents } from '../../hooks/recents';
@@ -18,11 +18,13 @@ interface IUser {
 const Main: React.FC = () => {
 
 	const [users, setUsers] = useState<IUser[]>();
+	const [loading, setIsLoading] = useState(false);
 	const {register, handleSubmit, setValue} = useForm();
 	const { addUser } = useRecents();
 	const navigation = useNavigation();
 
 	const handleSubmitSearch = async(data: any) => {
+		setIsLoading(true);
 		try {
 			const response = await api.get(`/search/users?q=${data.query}`)
 			setUsers(response.data.items)
@@ -31,6 +33,7 @@ const Main: React.FC = () => {
 		catch(error){
 			console.log(error)
 		}
+		setIsLoading(false);
 	}
 
 	useEffect(() => {
@@ -38,6 +41,12 @@ const Main: React.FC = () => {
   }, [register]);
 
 	return (
+		<>
+		<Modal visible={loading} transparent animationType="fade">
+			<S.LoadingContainer>
+				<ActivityIndicator animating={loading} size="large" color="#FFF" />
+			</S.LoadingContainer>
+		</Modal>
 		<S.Container>
 
 			<S.LogoContainer>
@@ -59,6 +68,7 @@ const Main: React.FC = () => {
 
 
 			<FlatList
+				showsVerticalScrollIndicator={false}
 				style={{marginTop: 20, }}
 				keyExtractor={(item) => String(item.id)}
 				data={users}
@@ -74,6 +84,7 @@ const Main: React.FC = () => {
 					/>}
 			/>
 		</S.Container>
+		</>
 	)
 }
 

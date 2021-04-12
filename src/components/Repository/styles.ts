@@ -5,8 +5,9 @@ import Constants from 'expo-constants';
 export const Container = styled(RectButton)`
 	min-height: 100px;
 	margin-bottom: 10px;
-	padding: 0 20px;
+	padding: 10px 20px;
 	background-color: #fff;
+
 `;
 
 export const Title = styled.Text`

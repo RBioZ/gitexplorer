@@ -2,9 +2,11 @@ import styled from 'styled-components/native';
 import Constants from 'expo-constants';
 
 export const Container = styled.View`
+	flex: 1;
 	margin: 0 20px;
 	margin-top: ${ Constants.statusBarHeight}px;
 	background: #f0f0f5;
+	padding-bottom: 5px;
 `;
 
 export const Header = styled.View`
@@ -56,4 +58,11 @@ export const LogoContainer = styled.View`
 	justify-content: space-between;
 	align-items: center;
 	margin-top: 20px;
+`;
+
+export const LoadingContainer = styled.View`
+	background-color: rgba(0,0,0,0.5);
+	flex: 1;
+	align-items: center;
+	justify-content: center;
 `;

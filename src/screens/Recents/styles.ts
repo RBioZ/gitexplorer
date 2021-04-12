@@ -15,10 +15,11 @@ export const Header = styled.View`
 	height: 50px;
 	align-items: center;
 	justify-content: center;
-	background-color: #fff;
+	background-color: #51398e;
 `;
 
 export const Title = styled.Text`
 	font-size: 20px;
 	font-weight: bold;
+	color: #fff;
 `;

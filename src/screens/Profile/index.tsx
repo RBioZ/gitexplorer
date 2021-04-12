@@ -1,4 +1,5 @@
 import React, { useEffect, useCallback, useState } from 'react';
+import { StatusBar } from 'expo-status-bar'
 import { FlatList, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Repository from '../../components/Repository';
@@ -44,9 +45,10 @@ const Profile: React.FC = () => {
 
 	return(
 	<>
+		<StatusBar style="light" backgroundColor="#51398E" translucent />
 		<S.Header>
 			<S.Back onPress={() => navigation.goBack()}>
-				<Ionicons name="arrow-back" size={30} color="black" />
+				<Ionicons name="arrow-back" size={30} color="white" />
 			</S.Back>
 			<S.Title>Perfil</S.Title>
 		</S.Header>

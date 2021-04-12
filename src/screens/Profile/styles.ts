@@ -3,14 +3,18 @@ import {StyleSheet} from 'react-native';
 import Constants from 'expo-constants';
 
 export const Container = styled.View`
-	background: #fff;
+	flex: 1;
+	background: #f0f0f5;
 `;
 
 export const DataContainer = styled.View`
 	padding: 0 20px;
 	padding-bottom: 20px;
 	border-bottom-width: ${StyleSheet.hairlineWidth}px;
+	border-bottom-color: #ccc;
 	margin-bottom: 10px;
+	padding-top: 20px;
+	background-color: #fff;
 `;
 
 export const DataHeader = styled.View`
@@ -68,10 +72,11 @@ export const Header = styled.View`
 	height: 50px;
 	align-items: center;
 	justify-content: center;
-	background-color: #fff;
+	background-color: #51398e;
 `;
 
 export const Title = styled.Text`
 	font-size: 20px;
 	font-weight: bold;
+	color: #fff;
 `;
