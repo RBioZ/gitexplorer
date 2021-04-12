@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { Feather, MaterialIcons } from '@expo/vector-icons';
 import { useForm } from 'react-hook-form';
 import { useRecents } from '../../hooks/recents';
 import api from '../../services/api'
 import User from '../../components/User'
+import logo from '../../assets/logo.png';
 import * as S from './styles';
 
 interface IUser {
@@ -38,19 +39,27 @@ const Main: React.FC = () => {
 
 	return (
 		<S.Container>
+
+			<S.LogoContainer>
+				<S.Logo resizeMode="contain" source={logo} />
+
+				<S.RecentsLink onPress={() => navigation.navigate('Recents')}>
+					<S.Recent>Histórico</S.Recent>
+					<MaterialIcons name="keyboard-arrow-right" size={24} color="#FFF" />
+				</S.RecentsLink>
+			</S.LogoContainer>
+
+
 			<S.Header>
 				<S.Input onChangeText={text => {setValue('query', text)}} placeholder={'Procure um usuário, ex. RBioZ'} />
 				<S.Button onPress={handleSubmit(handleSubmitSearch)}>
 					<Feather name="search" size={30} color="#51398e" />
 				</S.Button>
-
 			</S.Header>
-			<S.RecentsLink onPress={() => navigation.navigate('Recents')}>
-				<S.Recent>Recentes</S.Recent>
-				<MaterialIcons name="keyboard-arrow-right" size={24} color="#51398e" />
-			</S.RecentsLink>
+
+
 			<FlatList
-				style={{marginTop: 0, marginBottom: 100}}
+				style={{marginTop: 20, }}
 				keyExtractor={(item) => String(item.id)}
 				data={users}
 				renderItem={({item}) =>
